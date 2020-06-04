@@ -72,7 +72,7 @@ $("document").ready(function () {
 
         })
     })
-    if (window.location.pathname == "/Login.html") {
+    if (window.location.pathname == "/admin/Login.html") {
         login = function () {
             var user = document.getElementById("usuario").value;
             var pssw = document.getElementById("password").value;
@@ -87,12 +87,12 @@ $("document").ready(function () {
                 .then(function (response) {
                     console.log(response)
                     if (response.usuario == "admin") {
-                        window.location.href = window.location.origin + "/ListarOperaciones.html"
+                        window.location.href = window.location.origin + "/admin/ListarOperaciones.html";
                     }
                 })
         }
     }
-    if (window.location.pathname == "/ListarOperaciones.html") {
+    if (window.location.pathname == "/admin/ListarOperaciones.html") {
         activarOperacion = function (event) {
             document.getElementById("bg-spinner").style.visibility = "visible"
             var id = event.parentElement.parentElement.parentElement.getAttribute("id");
@@ -176,7 +176,7 @@ $("document").ready(function () {
         }
         listarOperaciones();
     }
-    if (window.location.pathname == "/Empresa.html") {
+    if (window.location.pathname == "/admin/Empresa.html") {
         listarCuentas = function () {
             $("#tbody").empty();
             get(URL + "/cuentaEmpresa")
@@ -331,7 +331,7 @@ $("document").ready(function () {
         }
 
     }
-    if (window.location.pathname == "/Promociones.html") {
+    if (window.location.pathname == "/admin/Promociones.html") {
         listarPromociones = function () {
             $("#tbody").empty();
             get(URL + "/Admin")
