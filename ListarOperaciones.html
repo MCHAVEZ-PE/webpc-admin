@@ -15,12 +15,12 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <!-- <div id="bg-spinner">
+    <div id="bg-spinner">
         <div class="opaco"></div>
         <div class="spinnerimg">
             <img width="200px" src="./resources/spinner.jpeg" />
         </div>
-    </div> -->
+    </div>
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <button class="btn btn-link btn-sm  m-1 order-lg-0" id="sidebarToggle" href="#">
@@ -28,10 +28,10 @@
         </button>
         <div style="width: 100%;color: #ffffff;">
 
-            <ul class="listHeader navbar-nav">      
+            <ul class="listHeader navbar-nav">
                 <li class="nav-item">
-                   
-                    <a  class="logoff" onclick="logoff();" >Salir <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
+                    <a class="logoff" onclick="logoff();">Salir <i class="fa fa-sign-out" aria-hidden="true"></i></a>
 
                 </li>
             </ul>
@@ -56,9 +56,6 @@
                             <div class="sb-nav-link-icon"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
                             Empresa
                         </a>
-
-
-
                     </div>
                 </div>
             </nav>
@@ -77,19 +74,17 @@
                         </div>
 
                         <div class="table-responsive">
-
-
                             <table id="dataTable" class="table .table-striped ">
                                 <thead>
                                     <tr>
+                                        <th><button class="btn1">TIPO</button></th>
                                         <th><button class="btn1">CLIENTE</button></th>
-                                        <th><button class="btn1">TELEFONO</button></th>
+                                        <th><button class="btn1">FECHA OPERC.</button></th>
                                         <th><button class="btn1">CORREO</button></th>
-                                        <th><button class="btn1">FECHA-OPERC.</button></th>
+                                        <th><button class="btn1">TELEFONO</button></th>
                                         <th><button class="btn1">CUENTA-CLIENTE</button></th>
                                         <th><button class="btn1">NUESTRA CUENTA</button></th>
                                         <th><button class="btn1">T.C.</button></th>
-                                        <!-- <th>Monto Disponible</th> -->
                                         <th><button class="btn1">NOTIF.</button></th>
                                         <th><button class="btn1">MONTO ENVIADO</button></th>
                                         <th><button class="btn1">MONTO RECIBIDO</button></th>
@@ -103,7 +98,13 @@
 
                             </table>
                         </div>
-
+                        <div>
+                            <!-- <div class="d-flex justify-content-end my-3">
+                                <button><</button>
+                                <button>|</button>
+                                <button>></button>
+                            </div> -->
+                        </div>
                     </div>
 
                 </div>
@@ -162,7 +163,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-     <script>
+    <script>
         $("#sidebarToggle").on("click", function (e) {
             e.preventDefault();
             $("body").toggleClass("sb-sidenav-toggled");
