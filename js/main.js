@@ -73,7 +73,7 @@ $("document").ready(function () {
 
         })
     })
-    if (window.location.pathname == "/Login.html") {
+    if (window.location.pathname == "/admin/Login" || window.location.pathname == "/") {
         login = function () {
             var user = document.getElementById("usuario").value;
             var pssw = document.getElementById("password").value;
@@ -88,12 +88,12 @@ $("document").ready(function () {
                 .then(function (response) {
                     console.log(response)
                     if (response.usuario == "admin") {
-                        window.location.href = window.location.origin + "/ListarOperaciones.html";
+                        window.location.href = window.location.origin + "/ListarOperaciones";
                     }
                 })
         }
     }
-    if (window.location.pathname == "/ListarOperaciones.html") {
+    if (window.location.pathname == "/admin/ListarOperaciones") {
         activarOperacion = function (event) {
             document.getElementById("bg-spinner").style.visibility = "visible"
             var id = event.parentElement.parentElement.parentElement.getAttribute("id");
@@ -146,7 +146,7 @@ $("document").ready(function () {
                 .then(function (response) {
                     console.log(response)
                     if (response.mensaje == "No hay elementos registrados") {
-
+                        console.log(response.mensaje);
                     } else {
 
                         var data = response;
@@ -161,19 +161,20 @@ $("document").ready(function () {
                         data.forEach(function (element) {
                             var tr = document.createElement("tr");
                             tr.setAttribute("id", element.idOperaciones);
-                            tr.insertCell(0).innerText = element.tipo;
-                            tr.insertCell(1).innerText = element.usuario;
-                            tr.insertCell(2).innerText = formaterFecha(element.feOperacion);
-                            tr.insertCell(3).innerText = element.correo;
-                            tr.insertCell(4).innerText = element.telefono;
-                            tr.insertCell(5).innerText = element.nuCuenta;
-                            tr.insertCell(6).innerText = element.numeroCuenta;
-                            tr.insertCell(7).innerText = element.tc;
-                            tr.insertCell(8).innerText = element.notificaciones;
-                            tr.insertCell(9).innerText = element.montoEnviado;
-                            tr.insertCell(10).innerText = element.montoRecivido;
-                            tr.insertCell(11).innerText = element.cci;
-                            tr.insertCell(12).innerHTML = `<div class='d-flex'>
+                            tr.insertCell(0).innerText = element.idOperaciones;       
+                            tr.insertCell(1).innerText = element.tipo;
+                            tr.insertCell(2).innerText = element.usuario;
+                            tr.insertCell(3).innerText = formaterFecha(element.feOperacion);
+                            tr.insertCell(4).innerText = element.correo;
+                            tr.insertCell(5).innerText = element.telefono;
+                            tr.insertCell(6).innerText = element.nuCuenta;
+                            tr.insertCell(7).innerText = element.numeroCuenta;
+                            tr.insertCell(8).innerText = element.tc;
+                            tr.insertCell(9).innerText = element.notificaciones;
+                            tr.insertCell(10).innerText = element.montoEnviado;
+                            tr.insertCell(11).innerText = element.montoRecivido;
+                            tr.insertCell(12).innerText = element.cci;
+                            tr.insertCell(13).innerHTML = `<div class='d-flex'>
                     <a title='Activar Operacion'  onclick='activarOperacion(this);'  class="btn btn-light"><i class="fa fa-retweet" aria-hidden="true"></i></a>
                     <a  title='Eliminar Cuenta' data-toggle='modal' data-target='#alertaEliminacion' onclick='getIdCuenta(this);' class="btn btn-light"><i class="fa fa-trash-o"
                     aria-hidden="true"></i></a>
@@ -195,10 +196,10 @@ $("document").ready(function () {
         }
         listarOperaciones();
     }
-    if (window.location.pathname == "/Empresa.html") {
+    if (window.location.pathname == "/admin/Empresa") {
         listarCuentas = function () {
             $("#tbody").empty();
-            get(URL + "/cuentaEmpresa")
+            get(URL + "/CuentaEmpresa")
                 .then(function (response) {
                     if (response.mensaje == "No hay elementos registrados") {
                         console.log(response)
@@ -262,7 +263,7 @@ $("document").ready(function () {
             } else {
                 data.append("nuCuenta", s3);
             }
-            post(URL + "/cuentaEmpresa", obj)
+            post(URL + "/CuentaEmpresa", obj)
                 .then(function (response) {
                     console.log(response)
                     alert(response.mensaje)
@@ -281,7 +282,7 @@ $("document").ready(function () {
                 method: 'POST',
                 body: form
             }
-            post(URL + "/cuentaEmpresa", obj)
+            post(URL + "/CuentaEmpresa", obj)
                 .then(function (response) {
                     console.log(response)
                     // alert(response.mensaje)
@@ -314,7 +315,7 @@ $("document").ready(function () {
                 method: 'POST',
                 body: form
             }
-            post(URL + "/cuentaEmpresa", obj)
+            post(URL + "/CuentaEmpresa", obj)
                 .then(function (response) {
                     console.log(response);
                     var data = response;
@@ -351,11 +352,12 @@ $("document").ready(function () {
             document.getElementById("nCuenta").value = "";
             document.getElementById("CCI").value = "";
             document.getElementById("subidaimg") = "";
+            document.getElementById("subidaimg").value = "";
         }
         subirImagen = function () {
             var img = document.getElementById("subidaimg");
             // console.log(img.files[0])
-            debugger;
+            // debugger;
             var form = new FormData();
             form.append("SubirImg", 1);
             form.append("Imagen", img.files[0]);
@@ -369,13 +371,16 @@ $("document").ready(function () {
                     .then(function (response) {
                         console.log(response)
                         alert(response.mensaje);
-                        document.getElementById("subidaimg").value = "";
+                      limpiarCampos();
                     })
+            }
+            else{
+                alert("Por favor agregar una imagen")
             }
         }
 
     }
-    if (window.location.pathname == "/Promociones.html") {
+    if (window.location.pathname == "/Promociones") {
         listarPromociones = function () {
             $("#tbody").empty();
             get(URL + "/Admin")
