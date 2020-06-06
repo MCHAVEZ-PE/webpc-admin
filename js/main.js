@@ -44,7 +44,7 @@ $("document").ready(function () {
                 console.log(response);
                 if (response.mensaje == "Session Cerrada") {
                     console.log("saliste")
-                    window.location.href = window.location.origin + "/Login.html";
+                    window.location.href = window.location.origin + "/Login";
                 } else {
                     console.log("sigues en la session ")
 
